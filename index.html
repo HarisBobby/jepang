@@ -110,7 +110,7 @@ header{border-bottom:3px solid var(--pk)}.lv{background:var(--pk);color:#fff;fon
 <script>
 /* ===== PENGATURAN (isi sebelum upload) ===== */
 const CONFIG={
-  API:'GANTI_DENGAN_URL_APPS_SCRIPT',          // URL Web App dari Apps Script (berakhiran /exec)
+  API:'https://script.google.com/macros/s/AKfycbwVF8w06GoXt3Aj1kvbUnjXDDcGU-iCst3e4BPLhDxKlw-qwy18tMbb18dG5uHIz_Yqtg/exec',          // URL Web App dari Apps Script (berakhiran /exec)
   KONTAK:'https://wa.me/628XXXXXXXXXX',         // link WhatsApp kamu
   CEK_HARI:7                                    // seberapa sering cek ulang ke server saat online
 };
@@ -122,7 +122,7 @@ const wr=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
 const rm=k=>{try{localStorage.removeItem(k)}catch(e){}};
 let DEV=rd(LS.dev);
 if(!DEV){DEV=(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random().toString(16).slice(2)).replace(/[^A-Za-z0-9-]/g,'');wr(LS.dev,DEV)}
-$g('gd').textContent=DEV.slice(0,8);$g('gk').href=CONFIG.KONTAK;
+$g('gd').textContent=DEV.slice(0,8);if(CONFIG.KONTAK.indexOf('XXXX')<0)$g('gk').href=CONFIG.KONTAK;else $g('gk').style.display='none';
 const MSG={KODE_TIDAK_ADA:'Kode tidak ditemukan. Periksa lagi penulisannya.',SUDAH_DIPAKAI:'Kode ini sudah dipakai di perangkat lain. Hubungi penjual jika ganti HP.',DIBLOKIR:'Kode ini dinonaktifkan. Hubungi penjual.',PERANGKAT_LAIN:'Kode ini terdaftar di perangkat lain.',DATA_KURANG:'Masukkan kode aktivasi.',TERLALU_BANYAK:'Terlalu banyak percobaan. Coba lagi 1 jam lagi.'};
 const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 async function api(a,c){
